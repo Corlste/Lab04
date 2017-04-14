@@ -50,16 +50,33 @@ public class SegreteriaStudentiController {
 	private TextField txtCognome;
 
 	public void setModel(Model model) {
-
+		this.model = model;
+		comboCorso.getItems().addAll(this.model.getCorsi());
+		comboCorso.getItems().add(0, null);
+		
 	}
 
 	@FXML
 	void doReset(ActionEvent event) {
-
+		txtMatricola.clear();
+		txtNome.clear();
+		txtCognome.clear();
+		txtResult.clear();
+		comboCorso.getSelectionModel().clearSelection();
 	}
 
 	@FXML
 	void doCercaNome(ActionEvent event) {
+		txtResult.clear();
+		txtNome.clear();
+		txtCognome.clear();
+		
+		int matricola = Integer.parseInt(txtMatricola.getText());
+		Studente student = model.getStudente(matricola);
+		
+		txtNome.setText(student.getNome());
+		txtCognome.setText(student.getCognome());
+		
 
 	}
 
