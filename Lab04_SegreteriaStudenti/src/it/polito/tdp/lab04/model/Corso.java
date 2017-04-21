@@ -1,11 +1,15 @@
 package it.polito.tdp.lab04.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Corso {
 	
 	String codins;
 	int crediti;
 	String nome;
 	int pd;
+	//List<Studente> studentiIscritti = new ArrayList<Studente>();
 	
 	
 	public Corso(String codins, int crediti, String nome, int pd) {
@@ -21,6 +25,11 @@ public class Corso {
 	public String getCodins() {
 		return codins;
 	}
+//	
+//	public void setStudenti(List<Studente> studIscritti){
+//		studentiIscritti.addAll(studIscritti);
+//		
+//	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

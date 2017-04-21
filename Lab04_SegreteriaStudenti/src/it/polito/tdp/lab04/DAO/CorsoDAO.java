@@ -37,6 +37,7 @@ public class CorsoDAO {
 				corsi.add(c);
 			
 			}
+			st.close();
 			conn.close();
 			return corsi;
 
@@ -57,8 +58,33 @@ public class CorsoDAO {
 	/*
 	 * Ottengo tutti gli studenti iscritti al Corso
 	 */
-	public void getStudentiIscrittiAlCorso(Corso corso) {
-		// TODO
+	public List<Studente> getStudentiIscrittiAlCorso(Corso corso) {
+		final String sql = "SELECT * FROM iscrizione, studente WHERE iscrizione.matricola=studente.matricola AND codins=?";
+		List<Studente> studentiIscrittiCorso = new ArrayList<Studente>();
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, corso.getCodins());
+			ResultSet rs = st.executeQuery();
+		
+
+			while (rs.next()) {
+				
+				Studente s = new Studente(rs.getInt("matricola"), rs.getString("nome"), rs.getString("cognome"), rs.getString("cds"));
+				studentiIscrittiCorso.add(s);
+			
+			}
+//			corso.setSstudeti(studentiIscrittiCorso)
+			st.close();
+			conn.close();
+			return studentiIscrittiCorso;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+		
+		
 	}
 
 	/*

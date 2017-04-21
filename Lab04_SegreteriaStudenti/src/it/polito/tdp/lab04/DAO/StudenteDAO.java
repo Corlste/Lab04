@@ -30,10 +30,11 @@ public class StudenteDAO {
 				// Crea un nuovo JAVA Bean Studente
 				// Aggiungi il nuovo Studente alla lista
 				
-				Studente s = new Studente(res.getInt("matricola"), res.getString("cognome"), res.getString("nome"), res.getString("cds"));
+				Studente s = new Studente(res.getInt("matricola"), res.getString("cognome"), res.getString("nome"), res.getString("CDS"));
 				studenti.add(s);
 			
 			}
+			stat.close();
 			connect.close();
 			return studenti;
 

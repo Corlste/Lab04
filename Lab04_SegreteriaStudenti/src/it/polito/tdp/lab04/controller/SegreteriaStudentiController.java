@@ -18,6 +18,7 @@ public class SegreteriaStudentiController {
 
 	private Model model;
 	List<Corso> corsi = new LinkedList<Corso>();
+	List<Studente> studentiIscritti = new LinkedList<Studente>();
 
 	@FXML
 	private ComboBox<Corso> comboCorso;
@@ -82,6 +83,30 @@ public class SegreteriaStudentiController {
 
 	@FXML
 	void doCercaIscrittiCorso(ActionEvent event) {
+		txtResult.clear();
+		txtNome.clear();
+		txtCognome.clear();
+		
+		Corso corsoCorrente = comboCorso.getValue();
+		if (corsoCorrente == null){
+			txtResult.appendText("Errore: caricare un corso\n");
+			return;
+		} else{
+			studentiIscritti=model.getStudentiIscrittiAlCorso(corsoCorrente);
+			
+			txtResult.setText(studentiIscritti.toString());
+			
+			
+			
+		}
+		
+		
+		
+//    	if(model.getCorsoCorrente() == null) {
+//    		txtResult.appendText("ERRORE: caricare un corso\n");
+//    		return ;
+//    	}
+    	
 
 	}
 
